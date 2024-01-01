@@ -14,7 +14,19 @@ function Peliculas() {
     }, [pagina]);
 
     // console.log(peliculas);
-    console.log(pagina);
+    // console.log(pagina);
+    
+    const anterior = () => { 
+        if (pagina > 1) { 
+            setPagina(pagina - 1)
+        }
+    }
+
+    const siguiente = () => {
+        if (pagina < 1000) {
+            setPagina(pagina + 1)
+        }
+    }
 
     return (
         <div>
@@ -22,7 +34,7 @@ function Peliculas() {
                 {peliculas.map( pelicula => (
                 
                     <div className="pelicula" key={pelicula.id}>
-                        <img className="poster" src={`https://image.tmdb.org/t/p/w500/${pelicula.poster_path}`} />
+                        <img className="poster" alt={pelicula.title} src={`https://image.tmdb.org/t/p/w500/${pelicula.poster_path}`} />
                         <h3 className="titulo">{pelicula.title}</h3>
                         <p>{pelicula.overview}</p>
                     </div>
@@ -30,8 +42,8 @@ function Peliculas() {
             </div>
 
             <div className="paginacion">
-                <button onClick={()=>{setPagina(pagina - 1)}} id="btnAnterior">Anterior</button>
-                <button onClick={()=>{setPagina(pagina + 1)}} id="btnSiguiente">Siguiente</button>
+                <button onClick={anterior} id="btnAnterior">Anterior</button>
+                <button onClick={siguiente} id="btnSiguiente">Siguiente</button>
             </div>
         </div>
     )
